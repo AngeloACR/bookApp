@@ -1,0 +1,50 @@
+<div class="pageBox">
+    <div class="selectionBox">
+        <div class="headerBox">
+            <div class="logoBox">
+                <img class="logoImg" src="assets/logos/logo-completo.png" alt="Logo" />
+            </div>
+            <h4 class="titleMob">La aplicación que todos quieren</h4>
+
+            <h1>Iniciar sesión</h1>
+            <div class="formBox">
+                <form [formGroup]="login" (ngSubmit)="logUser()">
+                    <div class="formContent">
+                        <div class="formInput">
+                            <label for="">Usuario</label>
+                            <input class="lInput" type="text" formControlName="username" name="username" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Contraseña</label>
+                            <input class="lInput" type="password" formControlName="password" name="password" />
+                            <p>¿Has olvidado tu contraseña?</p>
+                        </div>
+                        <div class="buttonBox">
+                            <button type="submit" class="formButton">
+                <p>INICIO DE SESIÓN</p>
+              </button>
+                        </div>
+                        <div class="buttonBoxMob">
+                            <button type="button" class="formButton" (click)="registro($event, 'usuario')">
+                <p>Regístrate como usuario</p>
+              </button>
+                        </div>
+                        <div class="buttonBoxMob">
+                            <button type="button" class="formButton" (click)="registro($event, 'proveedor')">
+                <p>Regístrate como proveedor</p>
+              </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="optionsBox">
+            <img class="formImg" src="assets/form/imagenLog.png" alt="Logo" />
+            <div class="buttonBox">
+                <button style="margin-right: 10px;" type="button" class="formButton" (click)="registro($event, 'proveedor')">
+          <p>Regístrate como proveedor</p>
+        </button>
+            </div>
+        </div>
+    </div>
+</div>

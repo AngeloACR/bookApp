@@ -1,0 +1,1086 @@
+<div class="pageBox">
+  <div class="selectionBox">
+    <div class="headerBox">
+      <h1>Registro</h1>
+    </div>
+    <div class="optionsBox">
+      <h1>Por favor seleccione su actividad económica</h1>
+      <div class="iconsBox">
+        <img
+          class="iconImg"
+          src="assets/form/SALABELLEZA.png"
+          alt="Logo"
+          (click)="toggleForm($event, 'salon')"
+        />
+        <img
+          class="iconImg"
+          src="assets/form/RESTAURANTE.png"
+          alt="Logo"
+          (click)="toggleForm($event, 'rest')"
+        />
+        <img
+          class="iconImg"
+          src="assets/form/CANCHAS.png"
+          alt="Logo"
+          (click)="toggleForm($event, 'canchas')"
+        />
+        <img
+          class="iconImg"
+          src="assets/form/CITASMEDI.png"
+          alt="Logo"
+          (click)="toggleForm($event, 'medi')"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="blackBox" [ngClass]="showBlack" (click)="closeForm()"></div>
+
+  <div class="logBox" [ngClass]="showForm">
+    <div class="closeButton">
+      <button class="closeB" (click)="closeForm()">X</button>
+    </div>
+    <div class="formSide">
+      <img class="formImg" src="assets/logos/bookAppLogo.png" alt="Logo" />
+    </div>
+    <div class="formBox">
+      <form [formGroup]="registroUser" (ngSubmit)="registerUser()">
+        <div class="formContent">
+          <div class="formInput">
+            <label for="">Correo Electrónico</label>
+            <input
+              class="lInput"
+              type="text"
+              formControlName="mail"
+              name="mail"
+            />
+          </div>
+          <div class="formInput">
+            <label for="">Usuario</label>
+            <input
+              class="lInput"
+              type="text"
+              formControlName="username"
+              name="username"
+            />
+          </div>
+          <div class="formInput">
+            <label for="">Contraseña</label>
+            <input
+              class="lInput"
+              type="password"
+              formControlName="password"
+              name="password"
+            />
+          </div>
+          <div class="formInput">
+            <label for="">Confirmar contraseña</label>
+            <input
+              class="lInput"
+              type="password"
+              formControlName="cpassword"
+              name="cpassword"
+            />
+          </div>
+        </div>
+      </form>
+
+      <form [formGroup]="registroEmpresa" (ngSubmit)="registerEmpresa()">
+        <div class="formContent">
+          <div class="formInput">
+            <label for="">Nombre de la Empresa</label>
+            <input
+              class="lInput"
+              type="text"
+              formControlName="nombreEmpresa"
+              name="nombreEmpresa"
+            />
+          </div>
+          <div class="formInput">
+            <label for="">NIT o ID</label>
+            <input
+              class="lInput"
+              type="text"
+              formControlName="nit"
+              name="nit"
+            />
+          </div>
+          <div class="formInput">
+            <label for="">Dirección</label>
+            <input
+              class="lInput"
+              type="text"
+              formControlName="direccion"
+              name="direccion"
+            />
+          </div>
+          <div class="formInput">
+            <label for="">Zona</label>
+            <input
+              class="lInput"
+              type="text"
+              formControlName="zona"
+              name="zona"
+            />
+          </div>
+          <div class="formInput">
+            <label for="">Teléfono 1</label>
+            <input
+              class="lInput"
+              type="text"
+              formControlName="tlf1"
+              name="tlf1"
+            />
+          </div>
+          <div class="formInput">
+            <label for="">Teléfono 2 (Opcional)</label>
+            <input
+              class="lInput"
+              type="text"
+              formControlName="tlf2"
+              name="tlf2"
+            />
+          </div>
+        </div>
+      </form>
+
+      <form [formGroup]="registroHorario" (ngSubmit)="registerHorario()">
+        <div class="formContent">
+          <div class="formHorario">
+            <div class="formDias">
+              <div class="formInput">
+                <label class="checkContainer">
+                  Lunes
+
+                  <input
+                    type="checkbox"
+                    checked="false"
+                    formControlName="lunes"
+                    value="Lunes"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="formInput">
+                <label class="checkContainer">
+                  Martes
+
+                  <input
+                    type="checkbox"
+                    checked="false"
+                    formControlName="martes"
+                    value="Martes"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="formInput">
+                <label class="checkContainer">
+                  Miércoles
+
+                  <input
+                    type="checkbox"
+                    checked="false"
+                    formControlName="miercoles"
+                    value="Miercoles"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="formInput">
+                <label class="checkContainer">
+                  Jueves
+
+                  <input
+                    type="checkbox"
+                    checked="false"
+                    formControlName="jueves"
+                    value="Jueves"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="formInput">
+                <label class="checkContainer">
+                  Viernes
+
+                  <input
+                    type="checkbox"
+                    checked="false"
+                    formControlName="viernes"
+                    value="Viernes"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="formInput">
+                <label class="checkContainer">
+                  Sábado
+
+                  <input
+                    type="checkbox"
+                    checked="false"
+                    formControlName="sabado"
+                    value="Sabado"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="formInput">
+                <label class="checkContainer">
+                  Domingo
+
+                  <input
+                    type="checkbox"
+                    checked="false"
+                    formControlName="domingo"
+                    value="Domingo"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+            <div class="formApertura">
+              <div class="formInput">
+                <label for="">Hora de apertura</label>
+                <select name="" formControlName="aperturalunes">
+                  <option selected="true">5 Am</option>
+                  <option>6 Am</option>
+                  <option>7 Am</option>
+                  <option>8 Am</option>
+                  <option>9 Am</option>
+                  <option>10 Am</option>
+                  <option>11 Am</option>
+                  <option>12 m</option>
+                  <option>1 Pm</option>
+                  <option>2 Pm</option>
+                  <option>3 Pm</option>
+                  <option>4 Pm</option>
+                  <option>5 Pm</option>
+                </select>
+              </div>
+              <div class="formInput">
+                <label for="">Hora de apertura</label>
+                <select name="" formControlName="aperturamartes">
+                  <option selected="true">5 Am</option>
+                  <option>6 Am</option>
+                  <option>7 Am</option>
+                  <option>8 Am</option>
+                  <option>9 Am</option>
+                  <option>10 Am</option>
+                  <option>11 Am</option>
+                  <option>12 m</option>
+                  <option>1 Pm</option>
+                  <option>2 Pm</option>
+                  <option>3 Pm</option>
+                  <option>4 Pm</option>
+                  <option>5 Pm</option>
+                </select>
+              </div>
+              <div class="formInput">
+                <label for="">Hora de apertura</label>
+                <select name="" formControlName="aperturamiercoles">
+                  <option selected="true">5 Am</option>
+                  <option>6 Am</option>
+                  <option>7 Am</option>
+                  <option>8 Am</option>
+                  <option>9 Am</option>
+                  <option>10 Am</option>
+                  <option>11 Am</option>
+                  <option>12 m</option>
+                  <option>1 Pm</option>
+                  <option>2 Pm</option>
+                  <option>3 Pm</option>
+                  <option>4 Pm</option>
+                  <option>5 Pm</option>
+                </select>
+              </div>
+              <div class="formInput">
+                <label for="">Hora de apertura</label>
+                <select name="" formControlName="aperturajueves">
+                  <option selected="true">5 Am</option>
+                  <option>6 Am</option>
+                  <option>7 Am</option>
+                  <option>8 Am</option>
+                  <option>9 Am</option>
+                  <option>10 Am</option>
+                  <option>11 Am</option>
+                  <option>12 m</option>
+                  <option>1 Pm</option>
+                  <option>2 Pm</option>
+                  <option>3 Pm</option>
+                  <option>4 Pm</option>
+                  <option>5 Pm</option>
+                </select>
+              </div>
+              <div class="formInput">
+                <label for="">Hora de apertura</label>
+                <select name="" formControlName="aperturaviernes">
+                  <option selected="true">5 Am</option>
+                  <option>6 Am</option>
+                  <option>7 Am</option>
+                  <option>8 Am</option>
+                  <option>9 Am</option>
+                  <option>10 Am</option>
+                  <option>11 Am</option>
+                  <option>12 m</option>
+                  <option>1 Pm</option>
+                  <option>2 Pm</option>
+                  <option>3 Pm</option>
+                  <option>4 Pm</option>
+                  <option>5 Pm</option>
+                </select>
+              </div>
+              <div class="formInput">
+                <label for="">Hora de apertura</label>
+                <select name="" formControlName="aperturasabado">
+                  <option selected="true">5 Am</option>
+                  <option>6 Am</option>
+                  <option>7 Am</option>
+                  <option>8 Am</option>
+                  <option>9 Am</option>
+                  <option>10 Am</option>
+                  <option>11 Am</option>
+                  <option>12 m</option>
+                  <option>1 Pm</option>
+                  <option>2 Pm</option>
+                  <option>3 Pm</option>
+                  <option>4 Pm</option>
+                  <option>5 Pm</option>
+                </select>
+              </div>
+              <div class="formInput">
+                <label for="">Hora de apertura</label>
+                <select name="" formControlName="aperturadomingo">
+                  <option selected="true">5 Am</option>
+                  <option>6 Am</option>
+                  <option>7 Am</option>
+                  <option>8 Am</option>
+                  <option>9 Am</option>
+                  <option>10 Am</option>
+                  <option>11 Am</option>
+                  <option>12 m</option>
+                  <option>1 Pm</option>
+                  <option>2 Pm</option>
+                  <option>3 Pm</option>
+                  <option>4 Pm</option>
+                  <option>5 Pm</option>
+                </select>
+              </div>
+            </div>
+            <div class="formCierre">
+              <div class="formInput">
+                <label for="">Hora de cierre</label>
+                <select name="" formControlName="cierrelunes">
+                  <option selected="true">5 Pm</option>
+                  <option>6 Pm</option>
+                  <option>7 Pm</option>
+                  <option>8 Pm</option>
+                  <option>9 Pm</option>
+                  <option>10 Pm</option>
+                  <option>11 Pm</option>
+                  <option>12 m</option>
+                  <option>1 Am</option>
+                  <option>2 Am</option>
+                  <option>3 Am</option>
+                  <option>4 Am</option>
+                  <option>5 Am</option>
+                </select>
+              </div>
+              <div class="formInput">
+                <label for="">Hora de cierre</label>
+                <select name="" formControlName="cierremartes">
+                  <option selected="true">5 Pm</option>
+                  <option>6 Pm</option>
+                  <option>7 Pm</option>
+                  <option>8 Pm</option>
+                  <option>9 Pm</option>
+                  <option>10 Pm</option>
+                  <option>11 Pm</option>
+                  <option>12 m</option>
+                  <option>1 Am</option>
+                  <option>2 Am</option>
+                  <option>3 Am</option>
+                  <option>4 Am</option>
+                  <option>5 Am</option>
+                </select>
+              </div>
+              <div class="formInput">
+                <label for="">Hora de cierre</label>
+                <select name="" formControlName="cierremiercoles">
+                  <option selected="true">5 Pm</option>
+                  <option>6 Pm</option>
+                  <option>7 Pm</option>
+                  <option>8 Pm</option>
+                  <option>9 Pm</option>
+                  <option>10 Pm</option>
+                  <option>11 Pm</option>
+                  <option>12 m</option>
+                  <option>1 Am</option>
+                  <option>2 Am</option>
+                  <option>3 Am</option>
+                  <option>4 Am</option>
+                  <option>5 Am</option>
+                </select>
+              </div>
+              <div class="formInput">
+                <label for="">Hora de cierre</label>
+                <select name="" formControlName="cierrejueves">
+                  <option selected="true">5 Pm</option>
+                  <option>6 Pm</option>
+                  <option>7 Pm</option>
+                  <option>8 Pm</option>
+                  <option>9 Pm</option>
+                  <option>10 Pm</option>
+                  <option>11 Pm</option>
+                  <option>12 m</option>
+                  <option>1 Am</option>
+                  <option>2 Am</option>
+                  <option>3 Am</option>
+                  <option>4 Am</option>
+                  <option>5 Am</option>
+                </select>
+              </div>
+              <div class="formInput">
+                <label for="">Hora de cierre</label>
+                <select name="" formControlName="cierreviernes">
+                  <option selected="true">5 Pm</option>
+                  <option>6 Pm</option>
+                  <option>7 Pm</option>
+                  <option>8 Pm</option>
+                  <option>9 Pm</option>
+                  <option>10 Pm</option>
+                  <option>11 Pm</option>
+                  <option>12 m</option>
+                  <option>1 Am</option>
+                  <option>2 Am</option>
+                  <option>3 Am</option>
+                  <option>4 Am</option>
+                  <option>5 Am</option>
+                </select>
+              </div>
+              <div class="formInput">
+                <label for="">Hora de cierre</label>
+                <select name="" formControlName="cierresabado">
+                  <option selected="true">5 Pm</option>
+                  <option>6 Pm</option>
+                  <option>7 Pm</option>
+                  <option>8 Pm</option>
+                  <option>9 Pm</option>
+                  <option>10 Pm</option>
+                  <option>11 Pm</option>
+                  <option>12 m</option>
+                  <option>1 Am</option>
+                  <option>2 Am</option>
+                  <option>3 Am</option>
+                  <option>4 Am</option>
+                  <option>5 Am</option>
+                </select>
+              </div>
+              <div class="formInput">
+                <label for="">Hora de cierre</label>
+                <select name="" formControlName="cierredomingo">
+                  <option selected="true">5 Pm</option>
+                  <option>6 Pm</option>
+                  <option>7 Pm</option>
+                  <option>8 Pm</option>
+                  <option>9 Pm</option>
+                  <option>10 Pm</option>
+                  <option>11 Pm</option>
+                  <option>12 m</option>
+                  <option>1 Am</option>
+                  <option>2 Am</option>
+                  <option>3 Am</option>
+                  <option>4 Am</option>
+                  <option>5 Am</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!--       <form
+        *ngIf="isRestaurant"
+        [formGroup]="registroRestaurant"
+        (ngSubmit)="registerRestaurant()"
+      >
+        <div class="formContent">
+          <div class="formHoras">
+            <div class="formInput">
+              <label for=""
+                >Con cuántas horas mínimo de anticipación permite que sus
+                clientes reserven:
+              </label>
+              <select name="" formControlName="horasAntelacion">
+                <option selected="true">12 horas</option>
+                <option>24 horas</option>
+                <option>36 horas</option>
+                <option>48 horas</option>
+                <option>60 horas</option>
+                <option>72 horas</option>
+              </select>
+            </div>
+          </div>
+          <div class="formMesas">
+            <div class="formInput">
+              <label for="">Cantidad de mesas: </label>
+              <input
+                class="lInput"
+                type="number"
+                formControlName="nMesas"
+                name=""
+              />
+            </div>
+          </div>
+          <div class="formServicios">
+            <div class="formTipo" formArrayName="tipoServicioR">
+              <h2>Tipo de servicio</h2>
+              <div
+                class="arrayInput"
+                *ngFor="let item of tipoServicioR.controls; let i=i ndex;"
+              >
+                <input type="text" [formControlName]="i" name="" />
+              </div>
+            </div>
+            <div class="formDuracion" formArrayName="duracionR">
+              <h2>Duracion</h2>
+              <div
+                class="arrayInput"
+                *ngFor="let item of duracionR.controls; let i=i ndex;"
+              >
+                <input type="text" [formControlName]="i" name="" />
+              </div>
+            </div>
+            <div class="formDescripcion" formArrayName="descripcionR">
+              <h2>Descripcion</h2>
+              <div
+                class="arrayInput"
+                *ngFor="let item of descripcionR.controls; let i=i ndex;"
+              >
+                <input type="text" [formControlName]="i" name="" />
+              </div>
+            </div>
+            <div class="formPrecio" formArrayName="precioServicioR">
+              <h2>Precio reserva</h2>
+              <div
+                class="arrayInput"
+                *ngFor="let item of precioServicioR.controls; let i=i ndex;"
+              >
+                <input type="text" [formControlName]="i" name="" />
+              </div>
+            </div>
+          </div>
+          <div class="actionButton">
+            <button type="button" class="addButton" (click)="addSomething()">
+              <p>Agregar mas servicios</p>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <form
+        *ngIf="isPeluqueria"
+        [formGroup]="registroPeluqueria"
+        (ngSubmit)="registerPeluqueria()"
+      >
+        <div class="formContent">
+          <div class="formHoras">
+            <div class="formInput">
+              <label for=""
+                >Con cuántas horas mínimo de anticipación permite que sus
+                clientes reserven:
+              </label>
+              <select name="" formControlName="horasAntelacion">
+                <option selected="true">12 horas</option>
+                <option>24 horas</option>
+                <option>36 horas</option>
+                <option>48 horas</option>
+                <option>60 horas</option>
+                <option>72 horas</option>
+              </select>
+            </div>
+          </div>
+          <div class="formServicios">
+            <div class="formTipo" formArrayName="tipoServicioP">
+              <h2>Tipo de servicio</h2>
+              <div
+                class="arrayInput"
+                *ngFor="let item of tipoServicioP.controls; let i=i ndex;"
+              >
+                <input
+                  class="lInput"
+                  type="text"
+                  [formControlName]="i"
+                  name=""
+                />
+              </div>
+            </div>
+            <div class="formDuracion" formArrayName="duracionP">
+              <h2>Duración</h2>
+              <div
+                class="arrayInput"
+                *ngFor="let item of duracionP.controls; let i=i ndex;"
+              >
+                <input
+                  class="lInput"
+                  type="text"
+                  [formControlName]="i"
+                  name=""
+                />
+              </div>
+            </div>
+            <div class="formDescripcion" formArrayName="descripcionP">
+              <h2>Descripción</h2>
+              <div
+                class="arrayInput"
+                *ngFor="let item of descripcionP.controls; let i=i ndex;"
+              >
+                <input
+                  class="lInput"
+                  type="text"
+                  [formControlName]="i"
+                  name=""
+                />
+              </div>
+            </div>
+            <div class="formPrecio" formArrayName="precioServicioP">
+              <h2>Precio servicio</h2>
+              <div
+                class="arrayInput"
+                *ngFor="let item of precioServicioP.controls; let i=i ndex;"
+              >
+                <input
+                  class="lInput"
+                  type="text"
+                  [formControlName]="i"
+                  name=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="actionButton">
+            <button type="button" class="addButton" (click)="addSomething()">
+              <p>Agregar mas servicios</p>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <form
+        *ngIf="isMedico"
+        [formGroup]="registroMedico"
+        (ngSubmit)="registerMedico()"
+      >
+        <div class="formContent">
+          <div class="formHoras">
+            <div class="formInput">
+              <label for="">Tiempo estándar de la cita inicial: </label>
+              <select name="" formControlName="tiempoInicial">
+                <option selected="true">30 minutos</option>
+                <option>45 minutos</option>
+                <option>60 minutos</option>
+                <option>90 minutos</option>
+              </select>
+            </div>
+            <div class="formInput">
+              <label for=""
+                >Con cuántas horas mínimo de anticipación permite que sus
+                clientes reserven:
+              </label>
+              <select name="" formControlName="horasAntelacion">
+                <option selected="true">12 horas</option>
+                <option>24 horas</option>
+                <option>36 horas</option>
+                <option>48 horas</option>
+                <option>60 horas</option>
+                <option>72 horas</option>
+              </select>
+            </div>
+          </div>
+          <div class="formServicios">
+            <div class="formTipo" formArrayName="tipoServicioM">
+              <h2>Tipo de servicio</h2>
+              <div
+                class="arrayInput"
+                *ngFor="let item of tipoServicioM.controls; let i=i ndex;"
+              >
+                <input
+                  class="lInput"
+                  type="text"
+                  [formControlName]="i"
+                  name=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="actionButton">
+            <button type="button" class="addButton" (click)="addSomething()">
+              <p>Agregar mas servicios</p>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <form
+        *ngIf="isCancha"
+        [formGroup]="registroCancha"
+        (ngSubmit)="registerCancha()"
+      >
+        <div class="formContent">
+          <div class="formHoras">
+            <div class="formInput">
+              <label for="">Tiempo por minutos que se alquila: </label>
+              <select name="" formControlName="tiempo">
+                <option selected="true">30 minutos</option>
+                <option>45 minutos</option>
+                <option>60 minutos</option>
+                <option>90 minutos</option>
+              </select>
+            </div>
+            <div class="formInput">
+              <label for=""
+                >Con cuántas horas mínimo de anticipación permite que sus
+                clientes reserven:
+              </label>
+              <select name="" formControlName="horasAntelacion">
+                <option selected="true">12 horas</option>
+                <option>24 horas</option>
+                <option>36 horas</option>
+                <option>48 horas</option>
+                <option>60 horas</option>
+                <option>72 horas</option>
+              </select>
+            </div>
+          </div>
+          <div class="formHorario">
+            <div class="formDias">
+              <div class="formInput">
+                <label class="checkContainer">
+                  Fútbol 5
+
+                  <input
+                    type="checkbox"
+                    checked="false"
+                    formControlName="futbol5"
+                    value="Lunes"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="formInput">
+                <label class="checkContainer">
+                  Fútbol 8
+
+                  <input
+                    type="checkbox"
+                    checked="false"
+                    formControlName="futbol8"
+                    value="Martes"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="formInput">
+                <label class="checkContainer">
+                  Fútbol 9
+
+                  <input
+                    type="checkbox"
+                    checked="false"
+                    formControlName="futbol9"
+                    value="Miercoles"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="formInput">
+                <label class="checkContainer">
+                  Fútbol 11
+
+                  <input
+                    type="checkbox"
+                    checked="false"
+                    formControlName="futbol11"
+                    value="Jueves"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div formArrayName="tipoServicioC">
+                <div
+                  class="arrayInput"
+                  *ngFor="let item of tipoServicioC.controls; let i=i ndex;"
+                >
+                  <input
+                    class="lInput"
+                    type="text"
+                    [formControlName]="i"
+                    name=""
+                  />
+                </div>
+              </div>
+              <div class="formApertura">
+                <div class="formInput">
+                  <label for="">Cantidad de canchas</label>
+                  <input type="number" formControlName="nCanchas5" />
+                </div>
+                <div class="formInput">
+                  <label for="">Cantidad de canchas</label>
+                  <input type="number" formControlName="nCanchas8" />
+                </div>
+                <div class="formInput">
+                  <label for="">Cantidad de canchas</label>
+                  <input type="number" formControlName="nCanchas9" />
+                </div>
+                <div class="formInput">
+                  <label for="">Cantidad de canchas</label>
+                  <input type="number" formControlName="nCanchas11" />
+                </div>
+                <div formArrayName="nCanchas">
+                  <div
+                    class="arrayInput"
+                    *ngFor="let item of nCanchas.controls; let i=i ndex;"
+                  >
+                    <input
+                      class="lInput"
+                      type="text"
+                      [formControlName]="i"
+                      name=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="formCierre">
+                <div class="formInput">
+                  <label for="">Cantidad de canchas</label>
+                  <input type="number" formControlName="precioCanchas5" />
+                </div>
+                <div class="formInput">
+                  <label for="">Cantidad de canchas</label>
+                  <input type="number" formControlName="precioCanchas8" />
+                </div>
+                <div class="formInput">
+                  <label for="">Cantidad de canchas</label>
+                  <input type="number" formControlName="precioCanchas9" />
+                </div>
+                <div class="formInput">
+                  <label for="">Cantidad de canchas</label>
+                  <input type="number" formControlName="precioCanchas11" />
+                </div>
+                <div formArrayName="precioCanchas">
+                  <div
+                    class="arrayInput"
+                    *ngFor="let item of precioCanchas.controls; let i=i ndex;"
+                  >
+                    <input
+                      class="lInput"
+                      type="text"
+                      [formControlName]="i"
+                      name=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="actionButton">
+            <button type="button" class="addButton" (click)="addSomething()">
+              <p>Agregar mas canchas</p>
+            </button>
+          </div>
+        </div>
+      </form>
+ -->
+      <form [formGroup]="registroEmpresa2" (ngSubmit)="registerEmpresa2()">
+        <div class="formContent">
+          <div class="formEmpresa">
+            <div class="formDescripcion">
+              <label for="">Descripcion de la empresa</label>
+              <textarea
+                rows="6"
+                type="text"
+                formControlName="descripcion"
+                name=""
+              ></textarea>
+            </div>
+            <div class="formImagenes">
+              <br />
+              <h3>Subir 3 imágenes de la empresa</h3>
+              <br />
+              <div class="formFiles">
+                <div class="formFile">
+                  <label for="documento1"></label>
+                  <input
+                    type="file"
+                    formControlName="imagen1"
+                    id="imagen1"
+                    (change)="fileProgress($event, 'imagen1')"
+                  />
+                  <span class="fileName" *ngIf="fileName1"
+                    >{{fileName1}}</span
+                  >
+                </div>
+                <div class="formFile">
+                  <label for="imagen2"></label>
+                  <input
+                    type="file"
+                    formControlName="imagen2"
+                    id="imagen2"
+                    (change)="fileProgress($event, 'imagen2')"
+                  />
+                  <span class="fileName" *ngIf="fileName2"
+                    >{{fileName2}}</span
+                  >
+                </div>
+                <div class="formFile">
+                  <label for="imagen3"></label>
+                  <input
+                    type="file"
+                    formControlName="imagen3"
+                    id="imagen3"
+                    (change)="fileProgress($event, 'imagen3')"
+                  />
+                  <span class="fileName" *ngIf="fileName3"
+                    >{{fileName3}}</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div *ngIf="isMedico" class="formInput">
+              <label for="">Valor de la consulta</label>
+              <input
+                class="lInput"
+                type="text"
+                formControlName="valorConsulta"
+                name="valorConsulta"
+              />
+            </div>
+            <div class="formInfodePago">
+              <div class="formMetodosdePago">
+                <label for="">Método de pago del servicio</label>
+                <div class="formCheckboxs">
+                  <label class="checkContainer">
+                    Pago en Establecimiento
+                    <input
+                      type="checkbox"
+                      checked="false"
+                      formControlName="pagoEnEstablecimiento"
+                      value="Pago En Establecimiento"
+                    />
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="checkContainer">
+                    Pago Online
+                    <input
+                      type="checkbox"
+                      checked="false"
+                      formControlName="pagoOnline"
+                      value="Pago Online"
+                    />
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="checkContainer">
+                    Reserva Gratis
+                    <input
+                      type="checkbox"
+                      checked="false"
+                      formControlName="reservaGratis"
+                      value="Reserva Gratis"
+                    />
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="formInput">
+                <label for="">Nombre de banco: </label>
+                <input
+                  class="lInput"
+                  type="text"
+                  formControlName="nombreBanco"
+                  name=""
+                />
+              </div>
+              <div class="formInput">
+                <label for="">Número de cuenta: </label>
+                <input
+                  class="lInput"
+                  type="text"
+                  formControlName="numeroBanco"
+                  name=""
+                />
+              </div>
+              <div class="formInput">
+                <label for="">Tipo de cuenta: </label>
+                <input
+                  class="lInput"
+                  type="text"
+                  formControlName="tipoCuenta"
+                  name=""
+                />
+              </div>
+              <div *ngIf="!isMedico" class="formInput">
+                <label for="">Nombre del encargado</label>
+                <input
+                  class="lInput"
+                  type="text"
+                  formControlName="encargado"
+                  name="encargado"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- 
+      <button type="button" class="addButton" (click)="addSucursal()">
+          <p>Agregar sucursal</p>
+        </button>
+      </div> -->
+
+      <form [formGroup]="registroTerminos" (ngSubmit)="registerEmpresa2()">
+        <div class="formTerminos">
+          <label class="checkContainer">
+            Estoy de acuerdo con los términos y condiciones
+            <input
+              type="checkbox"
+              checked="false"
+              formControlName="aceptarTerminos"
+            />
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </form>
+
+      <button
+        style="align-self: center;"
+        type="button"
+        class="formButton"
+        (click)="endRegistro()"
+      >
+        <p>Siguiente paso</p>
+      </button>
+    </div>
+    <!-- 
+    <div class="slideButtonsBox">
+
+      <button style="margin-right: 10px;" type="button" class="formButton" (click)="getBack()">
+        <p>Volver</p>
+      </button>
+
+      <button *ngIf="!formCompleted" style="margin-right: 10px;" type="button" class="formButton" (click)="getGoing()">
+        <p>Continuar</p>
+      </button>
+      <button *ngIf="formCompleted" style="margin-right: 10px;" type="button" class="formButton"
+        (click)="endRegistro()">
+        <p>Registrarse</p>
+      </button>
+
+    </div>
+    <div class="paginationBox">
+
+    </div> -->
+    <div class="formSide">
+      <img class="formImg" [src]="selectedImg" alt="Logo" />
+    </div>
+  </div>
+</div>

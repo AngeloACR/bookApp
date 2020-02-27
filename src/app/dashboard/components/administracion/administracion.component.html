@@ -1,0 +1,86 @@
+<div class="modBox">
+	<div class="titleBox">
+		<p *ngFor="let item of menu; let i = index" (click)="toggleMenu($event, item, i)" class="titleMenu"
+			[ngClass]="item.class">{{item.name}}</p>
+	</div>
+	<table style="width: 100%;">
+		<tr class="listBox">
+			<th class="listButton"></th>
+			<th class="listTitle" *ngFor="let field of fields; let i = index">{{field}}</th>
+		</tr>
+		<tr class="bItem" *ngFor="let value of values;">
+			<td class="listButton">
+				<button type="button" id="closeB" (click)="deleteItem($event, value)">X</button>
+				<img id="updateB" src="/assets/tuerca.png" (click)="openUpdate($event, value)">
+			</td>
+			<td class="listTitle" *ngFor="let field of fields">{{value[field.toLowerCase()]}}</td>
+		</tr>
+	</table>
+	<button class="buttonBox" (click)="openForm()">
+		{{addText}}
+	</button>
+</div>
+
+
+<div class="blackBox" [ngClass]="openBox" (click)="tBox()">
+
+</div>
+<div class="addBox" [ngClass]="openBox">
+
+	<div class="closeButton">
+		<button class="closeB" (click)="tBox()">X</button>
+	</div>
+
+	<div class="formHeader">
+		<h1>{{addText}}</h1>
+	</div>
+
+	<form class="formContent" *ngIf="isUsers" [formGroup]="passwordForm" (ngSubmit)="confirmPass()">
+		<input class="lInput" type="text" formControlName="nombre" placeholder="Nombre">
+		<input class="lInput" type="text" formControlName="correo" placeholder="Correo">
+		<input class="lInput" type="text" formControlName="usuario" placeholder="Usuario">
+		<label for="tipo">Tipo: </label>
+		<select name="tipo" formControlName="tipo">
+			<option value="Empleado">Empleado</option>
+			<option value="Dueño">Dueño de empresa</option>
+			<option value="Admin">Administrador</option>
+		</select>
+		<input class="lInput" type="password" formControlName="contraseña" placeholder="Contraseña" />
+		<!-- <input class="lInput" type="password" formControlName="passwordAgain" placeholder="Confirmar contraseña" />
+	 -->
+		<button type="submit" class="formButton">
+			<p>Aceptar</p>
+		</button>
+	</form>
+
+
+	<form class="formContent" *ngIf="isEmpresas" [formGroup]="empresasForm" (ngSubmit)="confirmEmp()">
+		<input class="lInput" type="text" formControlName="nit" placeholder="NIT">
+		<input class="lInput" type="text" formControlName="nombre" placeholder="Nombre">
+		<!-- <input class="lInput" type="text" formControlName="dueño" placeholder="Dueño"> -->
+		<input class="lInput" type="text" formControlName="horarios" placeholder="Horarios">
+		<input class="lInput" type="text" formControlName="telefono" placeholder="Telefono">
+		<button type="submit" class="formButton">
+			<p>Aceptar</p>
+		</button>
+	</form>
+
+	<form class="formContent" *ngIf="isServicios" [formGroup]="serviciosForm" (ngSubmit)="confirmSer()">
+		<input class="lInput" type="text" formControlName="tipo" placeholder="Tipo">
+		<input class="lInput" type="text" formControlName="descripcion" placeholder="Descripcion">
+		<input class="lInput" type="text" formControlName="costo" placeholder="costo">
+		<label>Profesional encargado: </label>
+		<select name="tipo" formControlName="encargado" placeholder="Profesional encargado">
+			<option *ngFor="let user of usersValues;" [value]="user.usuario">{{user.usuario}}</option>
+		</select>
+		<label>Empresa: </label>
+		<select name="tipo" formControlName="empresa" placeholder="Empresa">
+			<option *ngFor="let empresa of empresasValues;" [value]="empresa.nit">{{empresa.nombre}}</option>
+		</select>
+		<button type="submit" class="formButton">
+			<p>Aceptar</p>
+		</button>
+	</form>
+
+
+</div>
