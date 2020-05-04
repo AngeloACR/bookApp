@@ -23,6 +23,10 @@ export class RegistroComponent implements OnInit {
   registroPeluqueria: FormGroup;
   registroRestaurant: FormGroup;
 
+  messageTitle: String;
+  messageContent: String;
+  messageButton: String;
+
   formCompleted: Boolean;
   formSelected: Boolean;
   isMedico: Boolean;
@@ -32,6 +36,8 @@ export class RegistroComponent implements OnInit {
   selectedImg: String;
   showForm: {};
   showBlack: {};
+  endForm: {};
+  hideOption: {};
   salonImg: String;
   restImg: String;
   canchasImg: String;
@@ -44,11 +50,14 @@ export class RegistroComponent implements OnInit {
   tipoServicioC: FormArray;
   nombreEncargado: FormArray;
 
+  user: String;
+  password: String;
+
   nCanchas: FormArray;
   precioCanchas: FormArray;
 
   duracionP: FormArray;
-  duracionR: FormArray; aceptarTerminos
+  duracionR: FormArray;
 
   descripcionP: FormArray;
   descripcionR: FormArray;
@@ -91,6 +100,12 @@ export class RegistroComponent implements OnInit {
     }
     this.showBlack = {
       blackAct: false
+    }
+    this.hideOption = {
+      hideOption: false
+    }
+    this.endForm = {
+      endForm: false
     }
 
     this.registroEmpresa = new FormGroup({
@@ -232,87 +247,6 @@ export class RegistroComponent implements OnInit {
 
   }
 
-  registerUser() {
-    var values = this.registroUser.value;
-    let myEnd = '/users/'
-    console.log('here')
-    this.dbHandler.createSomething(values, myEnd)
-      .subscribe(data => {   // data is already a JSON object
-        console.log('And here')
-        this.router.navigateByUrl('/login');
-      });
-  }
-  registerEmpresa() {
-    var values = this.registroUser.value;
-    let myEnd = '/users/'
-    console.log('here')
-    this.dbHandler.createSomething(values, myEnd)
-      .subscribe(data => {   // data is already a JSON object
-        console.log('And here')
-        this.router.navigateByUrl('/login');
-      });
-  }
-  registerEmpresa2() {
-    var values = this.registroUser.value;
-    let myEnd = '/users/'
-    console.log('here')
-    this.dbHandler.createSomething(values, myEnd)
-      .subscribe(data => {   // data is already a JSON object
-        console.log('And here')
-        this.router.navigateByUrl('/login');
-      });
-  }
-  registerHorario() {
-    var values = this.registroUser.value;
-    let myEnd = '/users/'
-    console.log('here')
-    this.dbHandler.createSomething(values, myEnd)
-      .subscribe(data => {   // data is already a JSON object
-        console.log('And here')
-        this.router.navigateByUrl('/login');
-      });
-  }
-  registerMedico() {
-    var values = this.registroUser.value;
-    let myEnd = '/users/'
-    console.log('here')
-    this.dbHandler.createSomething(values, myEnd)
-      .subscribe(data => {   // data is already a JSON object
-        console.log('And here')
-        this.router.navigateByUrl('/login');
-      });
-  }
-  registerCancha() {
-    var values = this.registroUser.value;
-    let myEnd = '/users/'
-    console.log('here')
-    this.dbHandler.createSomething(values, myEnd)
-      .subscribe(data => {   // data is already a JSON object
-        console.log('And here')
-        this.router.navigateByUrl('/login');
-      });
-  }
-  registerPeluqueria() {
-    var values = this.registroUser.value;
-    let myEnd = '/users/'
-    console.log('here')
-    this.dbHandler.createSomething(values, myEnd)
-      .subscribe(data => {   // data is already a JSON object
-        console.log('And here')
-        this.router.navigateByUrl('/login');
-      });
-  }
-  registerRestaurant() {
-    var values = this.registroUser.value;
-    let myEnd = '/users/'
-    console.log('here')
-    this.dbHandler.createSomething(values, myEnd)
-      .subscribe(data => {   // data is already a JSON object
-        console.log('And here')
-        this.router.navigateByUrl('/login');
-      });
-  }
-
   toggleForm(event, tipo) {
     this.formSelected = true;
 
@@ -355,6 +289,10 @@ export class RegistroComponent implements OnInit {
     }
     this.showBlack = {
       blackAct: true
+    }
+
+    this.hideOption = {
+      hideOption: true
     }
   }
 
@@ -408,6 +346,9 @@ export class RegistroComponent implements OnInit {
       tipo: 'Proveedor',
     };
 
+    this.user = userAux.username;
+    this.password = userAux.password;
+
     var empresaValues = {
       NIT: empresaAux.nit,
       nombre: empresaAux.nombreEmpresa,
@@ -424,6 +365,7 @@ export class RegistroComponent implements OnInit {
       nombreBanco: empresa2Aux.nombreBanco,
       numeroBanco: empresa2Aux.numeroBanco,
       tipoCuenta: empresa2Aux.tipoCuenta,
+      dueno: userValues.usuario,
       nombreEncargado: empresa2Aux.encargado,
       imagen1: empresa2Aux.imagen1,
       imagen2: empresa2Aux.imagen2,
@@ -444,6 +386,9 @@ export class RegistroComponent implements OnInit {
     let tipo = this.tipoSelected;
     switch (tipo) {
       case 'salon':
+        this.messageTitle = 'PELUQUERÍA (' + userValues.usuario + ')';
+        this.messageContent = 'POR FAVOR SIGUE CONFIGURANDO EL FORMULARIO DE TUS EMPLEADOS O PROFESIONALES Y SEGUIDAMENTE CONFIGURE SUS SERVICIOS';
+        this.messageButton = 'SEGUIR CON LA CONFIGURACIÓN DE EMPLEADOS Y PROFESIONALES';
         var servicioAux = this.registroPeluqueria.value;
         servicioValues = {
 
@@ -451,18 +396,27 @@ export class RegistroComponent implements OnInit {
 
         break;
       case 'rest':
+        this.messageTitle = 'RESTAURANTE O BAR (' + userValues.usuario + ')';
+        this.messageContent = 'POR FAVOR SIGUE CONFIGURANDO TUS SERVICIOS';
         var servicioAux = this.registroRestaurant.value;
+        this.messageButton = 'SEGUIR CON LA CONFIGURACIÓN DE SERVICIOS';
         servicioValues = {
 
         };
         break;
       case 'canchas':
+        this.messageTitle = 'CANCHAS SINTÉTICAS (' + userValues.usuario + ')';
+        this.messageContent = 'POR FAVOR SIGUE CONFIGURANDO TUS SERVICIOS';
+        this.messageButton = 'SEGUIR CON LA CONFIGURACIÓN DE SERVICIOS';
         var servicioAux = this.registroCancha.value;
         servicioValues = {
 
         };
         break;
       case 'medi':
+        this.messageTitle = 'CITAS MÉDICAS (' + userValues.usuario + ')';
+        this.messageContent = 'POR FAVOR SIGUE CONFIGURANDO TUS SERVICIOS';
+        this.messageButton = 'SEGUIR CON LA CONFIGURACIÓN DE SERVICIOS';
         var servicioAux = this.registroMedico.value;
         servicioValues = {
 
@@ -501,16 +455,40 @@ export class RegistroComponent implements OnInit {
         i++;
       });
       //      window.location.reload();
-      this.login();
+      this.closeForm();
+      this.toggleMsg();
     });
   }
 
+  toggleMsg() {
+    this.endForm = {
+      endForm: true
+    }
+    this.hideOption = {
+      hideOption: true
+    }
+
+  }
+
   login() {
-    this.router.navigateByUrl('/login');
+    var data = {
+      username: this.user,
+      password: this.password
+    };
+    this.auth.login(data).subscribe((logData: any) => {
+      if (logData.auth) {
+        this.auth.storeData(logData);
+        this.router.navigateByUrl('/empresa/2');
+      }
+    });
   }
 
   flush() {
 
+  }
+
+  completeForm() {
+    this.login();
   }
 
   closeForm() {
@@ -519,6 +497,10 @@ export class RegistroComponent implements OnInit {
     }
     this.showBlack = {
       blackAct: false
+    }
+
+    this.hideOption = {
+      hideOption: false
     }
     this.registroUser.reset();
     this.registroEmpresa.reset();

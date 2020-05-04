@@ -31,7 +31,9 @@ export class HeaderComponent implements OnInit {
   }
 
   actualizar() {
-    let refreshList = [
+    this.dbHandler.actualizar();
+
+/*     let refreshList = [
       {
         endpoint: '/users/all',
         name: 'users'
@@ -53,7 +55,6 @@ export class HeaderComponent implements OnInit {
     refreshList.forEach(element => {
       dataArray.push(this.dbHandler.getSomething(element.endpoint));
     });
-//    this.dbHandler.getSomething('/users/all').subscribe(info => {
     forkJoin(dataArray).subscribe(info => {
       let i = 0;
       refreshList.forEach(element => {
@@ -62,8 +63,8 @@ export class HeaderComponent implements OnInit {
         i++;
       });
       window.location.reload();
-    });
-  }
+    });*/
+  } 
 
   logout() {
     this.auth.logout();

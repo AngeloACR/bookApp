@@ -5,13 +5,12 @@ import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { flatMap } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';
 
-
 @Component({
-  selector: 'app-perfil',
-  templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css']
+  selector: 'app-estadisticas',
+  templateUrl: './estadisticas.component.html',
+  styleUrls: ['./estadisticas.component.css']
 })
-export class PerfilComponent implements OnInit {
+export class EstadisticasComponent implements OnInit {
 
   id: string;
   endpoint: string;
@@ -20,13 +19,17 @@ export class PerfilComponent implements OnInit {
   fields: string[];
   values: string[];
 
-  menuOn: number;
-  menu: any;
+  isCitasConfirmadas: boolean;
+  isCitasCanceladas: boolean;
+  isUsuariosRegistrados: boolean;
+  isCitasConfirmadasEmpresas: boolean;
+  isCitasCanceladasEmpresas: boolean;
+
   constructor(
-    private dbHandler: DbHandlerService,
-    private fb: FormBuilder,
     private actRoute: ActivatedRoute,
-    private router: Router
+    private dbHandler: DbHandlerService,
+    private router: Router,
+    private fb: FormBuilder
   ) {
     this.actRoute.params.subscribe(params => {
       this.id = params['id'];
@@ -34,7 +37,7 @@ export class PerfilComponent implements OnInit {
     this.router.events.subscribe(event => {
       this.actRoute.url.subscribe(value => {
         let url = value[0].path;
-        if (url == 'perfil') {
+        if (url == 'estadisticas') {
           if (event instanceof NavigationEnd) {
             this.ngOnInit();
           }
@@ -45,28 +48,20 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.setMenu();
+    this.isCitasConfirmadas = false;
+    this.isCitasCanceladas = false;
+    this.isUsuariosRegistrados = false;
+    this.isCitasConfirmadasEmpresas = false;
+    this.isCitasCanceladasEmpresas = false;
+
   }
 
-
-
-  setMenu() {
-    this.menu = [{
-      name: 'Ver todo',
-      link: '/perfil/0',
-      class: {
-        menuAct: false
-      },
-    }];
-    this.menuOn = +this.id;
-    this.menu[this.menuOn].class = {
-      menuAct: true
-    };
-  }
-
-  toggleMenu(event, item, id) {
-    let link = item.link;
-    this.router.navigateByUrl(link);
+  initComponent(endpoint, name, title, values, fields) {
+    this.endpoint = endpoint;
+    this.name = name;
+    this.title = title;
+    this.values = values;
+    this.fields = fields;
   }
 
 }

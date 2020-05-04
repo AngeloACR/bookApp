@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { DbHandlerService } from '../../services/db-handler.service'
+import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
+import { DbHandlerService } from '../../services/db-handler.service';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { flatMap } from 'rxjs/operators';
+import { forkJoin } from 'rxjs';
+
 
 @Component({
   selector: 'app-directorio',
@@ -69,6 +71,7 @@ export class DirectorioComponent implements OnInit {
   ngOnInit() {
     this.setMenu()
     this.name = 'users';
+
     this.users = [];
     this.users.push({
       name: 'Angelo Crincoli',
@@ -87,11 +90,15 @@ export class DirectorioComponent implements OnInit {
       speciality: 'Urologo',
       experience: '5 años'
     });
+
     this.values = [];
+
     this.serviciosValues = this.dbHandler.getLocal('serviciosValues');
     this.serviciosFields = this.dbHandler.getLocal('serviciosFields');
+
     this.reservasValues = this.dbHandler.getLocal('reservasValues');
     this.reservasFields = this.dbHandler.getLocal('reservasFields');
+
     if (this.id == '0') {
       this.isVer = false;
       this.initComponent('/servicios/', 'servicios', this.serviciosValues, this.serviciosFields)
@@ -119,6 +126,7 @@ export class DirectorioComponent implements OnInit {
     };
 
   }
+
   setMenu() {
     this.menu = [{
       name: 'Lista de servicios',
@@ -139,6 +147,7 @@ export class DirectorioComponent implements OnInit {
       menuAct: true
     };
   }
+  
   initForm() {
     this.showForm = false;
     this.myInputs = new FormArray([]);

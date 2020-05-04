@@ -1,0 +1,137 @@
+<div class="modBox">
+    <div class="titleBox">
+        <h1>{{title}}</h1>
+    </div>
+    <div class="innerBox" *ngIf="isListarSucursales">
+        <table style="width: 100%;">
+            <tr class="listBox">
+                <th class="listButton"></th>
+                <th class="listTitle" *ngFor="let field of fields; let i = index">
+                    {{field}}
+                </th>
+            </tr>
+            <tr class="bItem" *ngFor="let value of values;">
+                <td class="listButton">
+                    <button type="button" id="closeB" (click)="deleteItem($event, value)">
+            X
+          </button>
+                    <img id="updateB" src="/assets/tuerca.png" (click)="openUpdate($event, value)" />
+                </td>
+                <td class="listTitle" *ngFor="let field of fields">
+                    {{value[field.toLowerCase()]}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="innerBox" *ngIf="isCrearSucursales"></div>
+    <div class="innerBox" *ngIf="isListarEmpleados">
+        <table style="width: 100%;">
+            <tr class="listBox">
+                <th class="listButton"></th>
+                <th class="listTitle" *ngFor="let field of fields; let i = index">
+                    {{field}}
+                </th>
+            </tr>
+            <tr class="bItem" *ngFor="let value of values;">
+                <td class="listButton">
+                    <button type="button" id="closeB" (click)="deleteItem($event, value)">
+            X
+          </button>
+                    <img id="updateB" src="/assets/tuerca.png" (click)="openUpdate($event, value)" />
+                </td>
+                <td class="listTitle" *ngFor="let field of fields">
+                    {{value[field.toLowerCase()]}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="innerBox" *ngIf="isCrearEmpleados"></div>
+    <div class="innerBox" *ngIf="isListarServicios">
+        <table style="width: 100%;">
+            <tr class="listBox">
+                <th class="listButton"></th>
+                <th class="listTitle" *ngFor="let field of fields; let i = index">
+                    {{field}}
+                </th>
+            </tr>
+            <tr class="bItem" *ngFor="let value of values;">
+                <td class="listButton">
+                    <button type="button" id="closeB" (click)="deleteItem($event, value)">
+            X
+          </button>
+                    <img id="updateB" src="/assets/tuerca.png" (click)="openUpdate($event, value)" />
+                </td>
+                <td class="listTitle" *ngFor="let field of fields">
+                    {{value[field.toLowerCase()]}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="innerBox" *ngIf="isCrearServicios"></div>
+    <div class="innerBox" *ngIf="isCrearEmpresas"></div>
+    <div class="innerBox" *ngIf="isListarEmpresas">
+        <table style="width: 100%;">
+            <tr class="listBox">
+                <th class="listButton"></th>
+                <th class="listTitle" *ngFor="let field of fields; let i = index">
+                    {{field}}
+                </th>
+            </tr>
+            <tr class="bItem" *ngFor="let value of values;">
+                <td class="listButton">
+                    <button type="button" id="closeB" (click)="deleteItem($event, value)">
+            X
+          </button>
+                    <img id="updateB" src="/assets/tuerca.png" (click)="openUpdate($event, value)" />
+                </td>
+                <td class="listTitle" *ngFor="let field of fields">
+                    {{value[field.toLowerCase()]}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="innerBox" *ngIf="isCrearServiciosAdmin"></div>
+    <div class="innerBox" *ngIf="isListarServiciosAdmin">
+        <table style="width: 100%;">
+            <tr class="listBox">
+                <th class="listButton"></th>
+                <th class="listTitle" *ngFor="let field of fields; let i = index">
+                    {{field}}
+                </th>
+            </tr>
+            <tr class="bItem" *ngFor="let value of values;">
+                <td class="listButton">
+                    <button type="button" id="closeB" (click)="deleteItem($event, value)">
+            X
+          </button>
+                    <img id="updateB" src="/assets/tuerca.png" (click)="openUpdate($event, value)" />
+                </td>
+                <td class="listTitle" *ngFor="let field of fields">
+                    {{value[field.toLowerCase()]}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="innerBox" *ngIf="isCrearEmpleadosAdmin"></div>
+    <div class="innerBox" *ngIf="isListarEmpleadosAdmin">
+        <table style="width: 100%;">
+            <tr class="listBox">
+                <th class="listButton"></th>
+                <th class="listTitle" *ngFor="let field of fields; let i = index">
+                    {{field}}
+                </th>
+            </tr>
+            <tr class="bItem" *ngFor="let value of values;">
+                <td class="listButton">
+                    <button type="button" id="closeB" (click)="deleteItem($event, value)">
+            X
+          </button>
+                    <img id="updateB" src="/assets/tuerca.png" (click)="openUpdate($event, value)" />
+                </td>
+                <td class="listTitle" *ngFor="let field of fields">
+                    {{value[field.toLowerCase()]}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

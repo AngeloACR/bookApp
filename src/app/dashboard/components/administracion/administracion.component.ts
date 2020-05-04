@@ -11,40 +11,38 @@ import { forkJoin } from 'rxjs';
   styleUrls: ['./administracion.component.css']
 })
 export class AdministracionComponent implements OnInit {
+
   id: string;
   endpoint: string;
+  name: string;
   title: string;
-  forms: string[];
   fields: string[];
   values: string[];
-  empresasFields: string[];
-  empresasValues: string[];
+
+  forms: string[];
   usersFields: string[];
   usersValues: string[];
-  serviciosFields: string[];
-  serviciosValues: string[];
-  permisosFields: string[];
-  permisosValues: string[];
-  name: string;
   addText: string;
   myForm: FormGroup;
-  passwordForm: FormGroup;
-  empresasForm: FormGroup;
-  serviciosForm: FormGroup;
-  myInputs: FormArray;
-  addForm: boolean;
-  showForm: boolean;
-  showRow: {};
-  showPass: {};
+  registroUser: FormGroup;
+  registroRol: FormGroup;
+  permisosFields: string[];
+  permisosValues: string[];
+  rolesFields: string[];
+  rolesValues: string[];
+
   boxOn: boolean;
   menu: any;
   menuOn: number;
-  isUsers: boolean;
-  isEmpresas: boolean;
-  isServicios: boolean;
-  isPermisos: boolean;
+
+  isListarUsuarios: boolean;
+  isCrearUsuarios: boolean;
+  isCrearRoles: boolean;
+  isListarRoles: boolean;
+  isAsignarPermisos: boolean;
 
   openBox: {};
+
   constructor(
     private actRoute: ActivatedRoute,
     private dbHandler: DbHandlerService,
@@ -68,7 +66,13 @@ export class AdministracionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.setMenu();
+    this.isCrearUsuarios = false;
+    this.isListarUsuarios = false;
+    this.isCrearRoles = false;
+    this.isListarRoles = false;
+    this.isAsignarPermisos = false;
+
+    /*this.setMenu();
     this.isUsers = false;
     this.isEmpresas = false;
     this.isServicios = false;
@@ -77,119 +81,98 @@ export class AdministracionComponent implements OnInit {
     this.empresasFields = this.dbHandler.getLocal('empresasFields');
     this.serviciosValues = this.dbHandler.getLocal('serviciosValues');
     this.serviciosFields = this.dbHandler.getLocal('serviciosFields');
-    this.usersValues = this.dbHandler.getLocal('usersValues');
-    this.usersFields = this.dbHandler.getLocal('usersFields');
+    */
     this.permisosValues = this.dbHandler.getLocal('permisosValues');
     this.permisosFields = this.dbHandler.getLocal('permisosFields');
+    this.usersValues = this.dbHandler.getLocal('usersValues');
+    this.usersFields = this.dbHandler.getLocal('usersFields');
     if (this.id == '0') {
-      this.isUsers = true;
-//      this.isEmpresas = false;
+      this.isCrearUsuarios = true;
+      //      this.isEmpresas = false;
 
-      this.initComponent('/users/all', 'users', 'Administrador de usuarios', 'Agregar usuarios', this.usersValues, this.usersFields);
+      this.initComponent('/users/', 'users', 'Crear Usuario', this.usersValues, this.usersFields);
     } else if (this.id == '1') {
-//      this.isUsers = false;
-      this.isEmpresas = true;
-      this.initComponent('/empresas/', 'empresas', 'Administrador de empresas', 'Agregar empresa', this.empresasValues, this.empresasFields);
+      //      this.isUsers = false;
+      this.isListarUsuarios = true;
+      this.initComponent('/users/all', 'users', 'Lista de Usuarios', this.usersValues, this.usersFields);
     } else if (this.id == '2') {
-      this.initComponent('/servicios/all', 'servicios', 'Administrador de servicios', 'Agregar servicio', this.serviciosValues, this.serviciosFields);
-      this.isServicios = true;
+      this.initComponent('/auth/', 'roles', 'Crear Rol', this.rolesValues, this.rolesFields);
+      this.isCrearRoles = true;
     } else if (this.id == '3') {
-      this.isPermisos = true;
-      this.initComponent('/permisos/', 'permisos', 'Administrador de permisos', 'Agregar permiso', this.permisosValues, this.permisosFields);
+      this.isListarRoles = true;
+      this.initComponent('/auth/', 'roles', 'Lista de Roles', this.rolesValues, this.rolesFields);
+    } else if (this.id == '4') {
+      this.isListarRoles = true;
+      this.initComponent('/permisos/', 'permisos', 'Asignación de permisos', this.permisosValues, this.permisosFields);
     }
 
     this.initForm();
-    this.showRow = {
+    /*this.showRow = {
       showRow: false
     };
     this.openBox = {
       openBox: false
     };
-
+ */
   }
 
 
-  setMenu() {
-    this.menu = [{
-      name: 'Administrar usuarios',
-      link: '/adm/0',
-      class: {
-        menuAct: false
+  /*   setMenu() {
+      this.menu = [{
+        name: 'Administrar usuarios',
+        link: '/adm/0',
+        class: {
+          menuAct: false
+        },
       },
-    },
-    {
-      name: 'Administrar empresas',
-      link: '/adm/1',
-      class: {
-        menuAct: false
+      {
+        name: 'Administrar empresas',
+        link: '/adm/1',
+        class: {
+          menuAct: false
+        },
       },
-    },
-    {
-      name: 'Administrar servicios',
-      link: '/adm/2',
-      class: {
-        menuAct: false
+      {
+        name: 'Administrar servicios',
+        link: '/adm/2',
+        class: {
+          menuAct: false
+        },
       },
-    },
-    {
-      name: 'Administrar permisos',
-      link: '/adm/3',
-      class: {
-        menuAct: false
-      },
-    }];
-    this.menuOn = +this.id;
-    this.menu[this.menuOn].class = {
-      menuAct: true
-    };
-  }
+      {
+        name: 'Administrar permisos',
+        link: '/adm/3',
+        class: {
+          menuAct: false
+        },
+      }];
+      this.menuOn = +this.id;
+      this.menu[this.menuOn].class = {
+        menuAct: true
+      };
+    } */
 
   initForm() {
-    this.forms = new Array();
-    this.showForm = false;
-    this.myInputs = new FormArray([]);
-    let aux = {};
-    this.fields.forEach(field => {
-      this.myInputs.push(new FormControl(''));
-    });
-    this.showRow = {
-      showRow: false
-    };
-    this.myForm = new FormGroup({
-      myInputs: this.myInputs,
-    });
 
-    this.passwordForm = new FormGroup({
+    this.registroUser = new FormGroup({
       nombre: new FormControl(''),
-      correo: new FormControl(''),
-      usuario: new FormControl(''),
-      tipo: new FormControl(''),
-      contraseña: new FormControl(''),
-      passwordAgain: new FormControl('')
+      apellido: new FormControl(''),
+      username: new FormControl(''),
+      mail: new FormControl(''),
+      rol: new FormControl(''),
+      password: new FormControl(''),
+      cpassword: new FormControl(''),
     });
 
-    this.empresasForm = new FormGroup({
-      nit: new FormControl(''),
-      nombre: new FormControl(''),
-//      dueño: new FormControl(''),
-      horarios: new FormControl(''),
-      telefono: new FormControl(''),
-    });
-
-    this.serviciosForm = new FormGroup({
-      tipo: new FormControl(''),
-      descripcion: new FormControl(''),
-      costo: new FormControl(''),
-      encargado: new FormControl(''),
-      empresa: new FormControl(''),
+    this.registroRol = new FormGroup({
+      rol: new FormControl(''),
     });
   }
 
-  initComponent(endpoint, name, title, addText, values, fields) {
+  initComponent(endpoint, name, title, values, fields) {
     this.endpoint = endpoint;
     this.name = name;
     this.title = title;
-    this.addText = addText;
     this.values = values;
     this.fields = fields;
   }
@@ -207,7 +190,7 @@ export class AdministracionComponent implements OnInit {
           .subscribe(data => {   // data is already a JSON object
             this.dbHandler.refreshData(myEnd, this.name);
           }); */
-     this.dbHandler.deleteSomething(item, myEnd).pipe(
+    this.dbHandler.deleteSomething(item, myEnd).pipe(
       flatMap((res1) => this.dbHandler.getSomething(this.endpoint))
     ).subscribe((info) => {
       this.dbHandler.refreshData(info, this.name);
@@ -216,25 +199,38 @@ export class AdministracionComponent implements OnInit {
 
   }
 
-  confirmAdd() {
+  createUser() {
     var myEnd = this.endpoint;
     let body = {};
-    if (myEnd == '/users/all') {
-      myEnd = myEnd.replace('/all', '/')
-      body['contraseña'] = this.passwordForm.value.password;
-    }
-    let values = this.myForm.value.myInputs
+    let values = this.registroUser.value
     let i = 0;
     this.fields.forEach(field => {
       let myField = field.toLowerCase();
       body[myField] = values[i];
       i++;
     });
-/*     this.dbHandler.createSomething(body, myEnd)
+    this.dbHandler.createSomething(body, myEnd)
       .subscribe(data => {   // data is already a JSON object
         this.dbHandler.refreshData(myEnd, this.name);
       });
- */  }
+  }
+
+
+  createRol() {
+    var myEnd = this.endpoint;
+    let body = {};
+    let values = this.registroRol.value
+    let i = 0;
+    this.fields.forEach(field => {
+      let myField = field.toLowerCase();
+      body[myField] = values[i];
+      i++;
+    });
+    this.dbHandler.createSomething(body, myEnd)
+      .subscribe(data => {   // data is already a JSON object
+        this.dbHandler.refreshData(myEnd, this.name);
+      });
+  }
 
   openForm() {
     this.forms.push('');
@@ -249,82 +245,6 @@ export class AdministracionComponent implements OnInit {
       oBox: this.boxOn
     };
   };
-
-  confirmPass() {
-    var myEnd = this.endpoint;
-    let body = {};
-    if (myEnd.includes('/all')) {
-      myEnd = myEnd.replace('/all', '/')
-    }
-    body = this.passwordForm.value;
-    /*     this.dbHandler.createSomething(body, myEnd)
-          .subscribe(data => {   // data is already a JSON object
-            this.dbHandler.refreshData(myEnd, this.name);
-          });
-     */
-    this.dbHandler.createSomething(body, myEnd).pipe(
-      flatMap((res1) => this.dbHandler.getSomething(this.endpoint))
-    ).subscribe((info) => {
-      console.log(info);
-      this.tBox();
-      if (info['status']) {
-        this.dbHandler.refreshData(info, this.name);
-      window.location.reload();
-      }
-    });
-
-  };
-
-  confirmEmp() {
-    var myEnd = this.endpoint;
-    let body = {};
-
-    body = this.empresasForm.value;
-    /*     this.dbHandler.createSomething(body, myEnd)
-          .subscribe(data => {   // data is already a JSON object
-            this.dbHandler.refreshData(myEnd, this.name);
-          });
-     */
-    body['dueño'] = 1;
-    this.dbHandler.createSomething(body, myEnd).pipe(
-      flatMap((res1) => this.dbHandler.getSomething(this.endpoint))
-    ).subscribe((info) => {
-      this.tBox();
-      if (info['status']) {
-        this.dbHandler.refreshData(info, this.name);
-      window.location.reload();
-      }
-    });
-
-  };
-
-
-  confirmSer() {
-    var myEnd = this.endpoint;
-    let body = {};
-
-    body = this.serviciosForm.value;
-    /*     this.dbHandler.createSomething(body, myEnd)
-          .subscribe(data => {   // data is already a JSON object
-            this.dbHandler.refreshData(myEnd, this.name);
-          });
-     */
-    if (myEnd.includes('/all')) {
-      myEnd = myEnd.replace('/all', '/')
-    }
-    this.dbHandler.createSomething(body, myEnd).pipe(
-      flatMap((res1) => this.dbHandler.getSomething(this.endpoint))
-    ).subscribe((info) => {
-      console.log(info);
-      this.tBox();
-      if (info['status']) {
-        this.dbHandler.refreshData(info, this.name);
-      window.location.reload();
-      }
-    });
-
-  };
-
   toggleMenu(event, item, id) {
     let link = item.link;
     this.router.navigateByUrl(link);

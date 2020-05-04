@@ -37,7 +37,8 @@ export class AuthService {
     var address = this.mySource + this.endpoint+'/';
     return this.http.post(address, body, {headers: headers});
 
-  }  
+  }
+    
   logout() {  
     localStorage.removeItem('loggedIn');  
     localStorage.removeItem('token');

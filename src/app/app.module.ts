@@ -15,7 +15,6 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { registerLocaleData } from '@angular/common';
 import localeCO from '@angular/common/locales/es-CO';
 import { RegistroComponent } from './components/registro/registro.component';
-
 registerLocaleData(localeCO, 'es-CO');
 
 @NgModule({
