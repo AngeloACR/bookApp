@@ -282,7 +282,7 @@ justify-content: space-evenly; */
     height: 33px;
     border: none;
     background-image: none;
-    background-color: white
+    background-color: white;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     border-style: solid;
@@ -595,7 +595,7 @@ margin: 0;
     margin-right: 23px;
     cursor: pointer;
     background-image: none;
-    background-color: white
+    background-color: white;
     border-style: solid;
     border-color: #0072b9;
     border-width: 2px;
