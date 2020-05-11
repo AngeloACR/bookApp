@@ -1,3 +1,19 @@
+@font-face {
+    font-family: 'Franklin Gothic Demi Cond';
+    src: url('/assets/font/FranklinGothic-DemiCond.woff2') format('woff2'), url('/assets/font/FranklinGothic-DemiCond.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h4,
+h3,
+h2,
+h1,
+p,
+label {
+    font-family: 'Franklin Gothic Demi Cond';
+}
+
 .appBox {
     display: flex;
     height: 100%;

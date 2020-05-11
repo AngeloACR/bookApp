@@ -4,7 +4,7 @@
             <h1>Registro</h1>
         </div>
         <div class="optionsBox" [ngClass]="hideOption">
-            <h1>Por favor seleccione su actividad económica</h1>
+            <h1 class="title">Por favor seleccione su actividad económica</h1>
             <div class="iconsBox">
                 <img class="iconImg" src="assets/form/SALABELLEZA.png" alt="Logo" (click)="toggleForm($event, 'salon')" />
                 <img class="iconImg" src="assets/form/RESTAURANTE.png" alt="Logo" (click)="toggleForm($event, 'rest')" />
@@ -949,7 +949,7 @@
                     </div>
                 </form>
 
-                <button style="align-self: center;" type="button" class="formButton" (click)="endRegistro()">
+                <button style="align-self: center; background:#0072b9;" type="button" class="formButton" (click)="endRegistro()">
           <p>Siguiente paso</p>
         </button>
             </div>
@@ -978,13 +978,13 @@
         </div>
         <div class="messageBox" [ngClass]="endForm">
             <div class="messageInnerBox">
-              <img class="messageImg" [src]="selectedImg" alt="Logo" />
-              <p>Gracias por llenar el formulario</p><br>
+                <img class="messageImg" [src]="selectedImg" alt="Logo" />
+                <p>Gracias por llenar el formulario</p><br>
                 <p>{{messageTitle}}</p><br>
                 <p>{{messageContent}}</p><br>
                 <p>SI NECESITAS AYUDA EN LA CONFIGURACIÓN, LLAMANOS A LA LINES DE ATENCIÓN Y SOPORTE <b>+57 304 106 7369</b><br><br> GRACIAS POR TU ATENCIÓN</p><br><br>
-              </div>
-              <button style="align-self: center;" type="button" class="formButton" (click)="completeForm()">
+            </div>
+            <button style="align-self: center;" type="button" class="formButton" (click)="completeForm()">
                 <p>{{messageButton}}</p>
               </button>
         </div>
